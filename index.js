@@ -33,9 +33,9 @@ onValue(shoppingListInDB, snapshot => {
     })
 
     if (itemsArray.length === 0) {
-        shoppingListEl.innerHTML = "<h2>No items here... yet</h2>"
+        shoppingListEl.innerHTML = "<h2>No items here... yet.</h2>"
     } else {
-        const deleteMessage = "<p>To delete an item, double-click on it</p>"
+        const deleteMessage = "<p>To delete an item, double-click on it.</p>"
         shoppingListEl.insertAdjacentHTML("beforeend", deleteMessage)
     }
 })
