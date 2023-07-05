@@ -13,10 +13,13 @@ const inputFieldEl = document.getElementById("input-field")
 const addButtonEl = document.getElementById("add-button")
 const shoppingListEl = document.getElementById("shopping-list")
 
+// add trim()
 addButtonEl.addEventListener("click", () => {
-    const inputValue = inputFieldEl.value
+    const inputValue = inputFieldEl.value.trim()
+    if (inputValue !== "") {
     push(shoppingListInDB, inputValue)
     clearInputFieldEl()
+    }
 })
 
 onValue(shoppingListInDB, snapshot => {
@@ -31,6 +34,9 @@ onValue(shoppingListInDB, snapshot => {
 
     if (itemsArray.length === 0) {
         shoppingListEl.innerHTML = "<h2>No items here... yet</h2>"
+    } else {
+        const deleteMessage = "<p>To delete an item, double-click on it</p>"
+        shoppingListEl.insertAdjacentHTML("beforeend", deleteMessage)
     }
 })
 
@@ -46,7 +52,7 @@ function appendItemToShoppingListEl(itemID, itemValue) {
     let newEl = document.createElement("li")
     newEl.textContent = itemValue
     newEl.dataset.deleteCount = 0
-    
+
     newEl.addEventListener("click", function() {
         let deleteCount = parseInt(this.dataset.deleteCount)
         
